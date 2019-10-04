@@ -1,4 +1,7 @@
-﻿using UnoTasks.Shared.Models;
+﻿using System.Collections.Generic;
+using UnoTasks.Shared.Models;
+using UnoTasks.Shared.Services;
+using UnoTasks.Shared.ViewsModels;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -15,35 +18,14 @@ namespace UnoTasks.Views
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public static readonly DependencyProperty ItemProperty =
-        DependencyProperty
-            .Register(nameof(Item), 
-                typeof(Item),
-                typeof(MainPage),
-                new PropertyMetadata(default(Item)));
+        public MainPageViewModel ViewModel { get; private set; }
 
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            this.ViewModel = new MainPageViewModel();
         }
 
-        public Item Item
-        {
-            get => (Item)GetValue(ItemProperty);
-            set => SetValue(ItemProperty, value);
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            Item = new Item
-            {
-                Id = 101,
-                Title = "Getting started",
-                Description = "Define the game concept!",
-                CurrentStatus = ItemStatus.InProgress,
-                TaskType = ItemType.GameDesign
-            };
-        }
 
         public ItemStatus[] StatusList => new[]
         {
@@ -65,8 +47,8 @@ namespace UnoTasks.Views
 
         private void StatusPicker_SelectionChanged(object sender, SelectionChangedEventArgs args)
         {
-            var color = Colors.Red;
-            switch (Item.CurrentStatus)
+            Color color = Colors.Red;
+            switch (ViewModel.Item.CurrentStatus)
             {
                 case ItemStatus.Abandoned:
                     color = Colors.Red;
@@ -84,13 +66,13 @@ namespace UnoTasks.Views
                     color = Colors.Blue;
                     break;
             }
-            IssueStatusIndicator.Background = new SolidColorBrush(color);
+            ViewModel.StatusColor = color;
         }
 
         private void ItemType_SelectionChanged(object sender, SelectionChangedEventArgs args)
         {
             var color = Colors.Red;
-            switch (ItemTypeBox.SelectedItem)
+            switch (ViewModel.Item.TaskType)
             {
                 case ItemType.Programming:
                     color = Colors.Green;
@@ -108,7 +90,7 @@ namespace UnoTasks.Views
                     color = Colors.Yellow;
                     break;
             }
-            IssueTypeIndicator.Background = new SolidColorBrush(color);
+            ViewModel.TypeColor = color;
         }
     }
 }

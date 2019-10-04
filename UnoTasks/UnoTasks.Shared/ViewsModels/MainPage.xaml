@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="UnoTasks.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Models="using:UnoTasks.Shared.Models"
+    mc:Ignorable="d ios">
+
+    <Page.Content>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ListView ItemsSource="{x:Bind ViewModel.Items}"
+                      SelectedItem="{x:Bind ViewModel.Item}"
+                      SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:Item">
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="LightGray" Padding="5">
+                            <!--<Canvas Width="10" Background="{x:Bind ViewModel.StatusColor}" />
+                            <Canvas Width="10" Background="{x:Bind ViewModel.TypeColor}" />-->
+                            <TextBlock Text="{x:Bind Id}" Margin="6,0" VerticalAlignment="Center" />
+                            <StackPanel Orientation="Vertical" Padding="5">
+                                <TextBlock Text="Type" FontWeight="Bold" FontSize="16" Margin="10,0" />
+                                <!--<ComboBox x:Name="ItemTypeBox"
+                                    ItemsSource="{x:Bind ViewModel.TypeList}"
+                                    SelectedItem="{x:Bind TaskType, Mode=TwoWay}"
+                                    SelectionChanged="ItemType_SelectionChanged"
+                                    PlaceholderText="Enter the item Type"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="10,0,0,0"/>-->
+                                <TextBlock Text="Status" FontWeight="Bold" FontSize="16" Margin="10,0" />
+                                <!--<ComboBox x:Name="ItemStatusBox"
+                                    ItemsSource="{x:Bind ViewModel.StatusList}"
+                                    SelectedItem="{x:Bind CurrentStatus, Mode=TwoWay}"
+                                    HorizontalAlignment="Stretch"
+                                    PlaceholderText="Select the item status"
+                                    SelectionChanged="StatusPicker_SelectionChanged"
+                                    Margin="10,0,0,0"/>-->
+                            </StackPanel>
+                            <TextBox Text="{x:Bind Description, Mode=TwoWay}"
+                                 Grid.Row="2"
+                                 AcceptsReturn="True"
+                                 Header="Description"
+                                 Height="200"
+                                 Width="200"
+                                 Margin="10,0"
+                                 PlaceholderText="Enter Text Here" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Page.Content>
+</Page>

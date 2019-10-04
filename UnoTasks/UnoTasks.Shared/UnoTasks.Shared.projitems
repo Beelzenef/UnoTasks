@@ -19,13 +19,16 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumToStringConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Data\ItemMockData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ItemService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\MainPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)ViewsModels\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -40,8 +43,5 @@
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
   </ItemGroup>
 </Project>
