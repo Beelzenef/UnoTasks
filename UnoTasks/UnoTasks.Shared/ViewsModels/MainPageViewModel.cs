@@ -2,6 +2,7 @@
 using UnoTasks.Shared.Models;
 using UnoTasks.Shared.Services;
 using Windows.UI;
+using static UnoTasks.Shared.Models.Item;
 
 namespace UnoTasks.Shared.ViewsModels
 {
@@ -46,5 +47,23 @@ namespace UnoTasks.Shared.ViewsModels
                 _items.Add(item);
             }
         }
+
+        public ItemStatus[] StatusList => new[]
+        {
+            ItemStatus.New,
+            ItemStatus.Closed,
+            ItemStatus.InPause,
+            ItemStatus.InProgress,
+            ItemStatus.Abandoned
+        };
+
+        public ItemType[] TypeList => new[]
+        {
+            ItemType.Documentation,
+            ItemType.GameDesign,
+            ItemType.Programming,
+            ItemType.Testing,
+            ItemType.UserInterface
+        };
     }
 }

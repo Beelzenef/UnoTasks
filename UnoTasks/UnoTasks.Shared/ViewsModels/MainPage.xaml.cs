@@ -1,12 +1,6 @@
-﻿using System.Collections.Generic;
-using UnoTasks.Shared.Models;
-using UnoTasks.Shared.Services;
-using UnoTasks.Shared.ViewsModels;
+﻿using UnoTasks.Shared.ViewsModels;
 using Windows.UI;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using static UnoTasks.Shared.Models.Item;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -25,25 +19,6 @@ namespace UnoTasks.Views
             InitializeComponent();
             this.ViewModel = new MainPageViewModel();
         }
-
-
-        public ItemStatus[] StatusList => new[]
-        {
-            ItemStatus.New,
-            ItemStatus.Closed,
-            ItemStatus.InPause,
-            ItemStatus.InProgress,
-            ItemStatus.Abandoned
-        };
-
-        public ItemType[] TypeList => new[]
-        {
-            ItemType.Documentation,
-            ItemType.GameDesign,
-            ItemType.Programming,
-            ItemType.Testing,
-            ItemType.UserInterface
-        };
 
         private void StatusPicker_SelectionChanged(object sender, SelectionChangedEventArgs args)
         {
