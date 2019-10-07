@@ -1,15 +1,14 @@
-﻿using UnoTasks.Shared.ViewsModels;
+﻿using System;
+using UnoTasks.Shared.Models;
+using UnoTasks.Shared.ViewsModels;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using static UnoTasks.Shared.Models.Item;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
-namespace UnoTasks.Views
+namespace UnoTasks.ViewsModels
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
         public MainPageViewModel ViewModel { get; private set; }
@@ -19,6 +18,46 @@ namespace UnoTasks.Views
             InitializeComponent();
             this.ViewModel = new MainPageViewModel();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var itemToAdd = e.Parameter as NewItem;
+
+            if (itemToAdd != null)
+            {
+                var newItem = MapToItem(itemToAdd);
+
+                ViewModel.Items.Add(newItem);
+            }
+        }
+
+        private Item MapToItem(NewItem itemToAdd)
+        {
+            return new Item
+            {
+                Id = ToNumber(itemToAdd.Id),
+                Description = itemToAdd.Description,
+                TaskType = ItemType.Programming,
+                CurrentStatus = ItemStatus.New
+            };
+        }
+
+        private int ToNumber(string number)
+        {
+            int result = 0;
+
+            try
+            {
+                result = int.Parse(number);
+            }
+            catch (Exception e)
+            {
+                return result;
+            }
+
+            return result;
+        }
+
 
         private void StatusPicker_SelectionChanged(object sender, SelectionChangedEventArgs args)
         {
@@ -66,6 +105,11 @@ namespace UnoTasks.Views
                     break;
             }
             ViewModel.TypeColor = color;
+        }
+
+        private void AddNewItem_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AddItemPage));
         }
     }
 }

@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="UnoTasks.Shared.ViewsModels.AddItemPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UnoTasks.Shared.ViewsModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="20" Padding="20" Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Text="Id"/>
+            <TextBox PlaceholderText="Insert task Id"
+                     Text="{x:Bind ViewModel.NewItem.Id, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Margin="20" Padding="20" Orientation="Horizontal" Grid.Row="1">
+            <TextBlock Text="Description"/>
+            <TextBox Height="200" Width="200" PlaceholderText="Insert task description"
+                     Text="{x:Bind ViewModel.NewItem.Description, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Margin="20" Orientation="Horizontal" Grid.Row="2">
+            <Button Content="Go back!" Margin="20" Click="BackToMain_Click"/>
+            <Button Content="Add item" Margin="20" Click="AddItem_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -20,7 +20,12 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\ItemMockData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\NewItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ItemService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\AddItemPage.xaml.cs">
+      <DependentUpon>AddItemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\AddItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -28,6 +33,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\MainPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)ViewsModels\AddItemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)ViewsModels\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
