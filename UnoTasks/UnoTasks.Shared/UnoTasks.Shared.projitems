@@ -18,29 +18,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumToStringConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\ItemMockData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\NewItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\ItemService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\AddItemPage.xaml.cs">
-      <DependentUpon>AddItemPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\AddItemViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\MainPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\MainPageViewModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)ViewsModels\AddItemPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)ViewsModels\MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="$(MSBuildThisFileDirectory)Service\IProjectProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Project.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\ProjectProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\ProjectType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\ProjectViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ProjectControl.xaml.cs">
+      <DependentUpon>ProjectControl.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\LockScreenLogo.scale-200.png" />
@@ -51,6 +40,13 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
+    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ProjectControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>
