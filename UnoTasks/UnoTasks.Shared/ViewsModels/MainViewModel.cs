@@ -16,11 +16,11 @@ namespace ViewsModels
 
         public MainViewModel(IProjectProvider projectProvider)
         {
-            LoadProjects = ReactiveCommand.CreateFromTask(() => HereLoadProjects(projectProvider));
+            LoadProjects = ReactiveCommand.CreateFromTask(() => LoadProjectsAndTypes(projectProvider));
             LoadProjects.Subscribe(tuple => Projects = tuple.projs.Select(p => new ProjectViewModel(p, tuple.types)).ToList());
         }
 
-        private async Task<(IEnumerable<Project> projs, IEnumerable<ProjectType> types)> HereLoadProjects(IProjectProvider projectProvider)
+        private static async Task<(IEnumerable<Project> projs, IEnumerable<ProjectType> types)> LoadProjectsAndTypes(IProjectProvider projectProvider)
         {
             var projs = await projectProvider.GetProjects();
             var types = await projectProvider.GetProjectTypes();
