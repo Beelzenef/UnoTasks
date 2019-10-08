@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnoTasks.Service;
 
 namespace Uno.Tasks.Projects
 {
@@ -13,7 +14,8 @@ namespace Uno.Tasks.Projects
                 Id = x,
                 Name = $"Project {x}",
                 Description = "This is a nice project",
-                ProjectType = Types[x-1]
+                ProjectType = Types[x-1],
+                Status = Statuses.First(),
             }));
         }
 
@@ -21,6 +23,21 @@ namespace Uno.Tasks.Projects
         {
             return Task.FromResult((IEnumerable<ProjectType>)Types);
         }
+
+        public Task<IEnumerable<ProjectStatus>> GetStatuses()
+        {
+            return Task.FromResult((IEnumerable<ProjectStatus>)Statuses);
+        }
+
+        private static List<ProjectStatus> Statuses
+        {
+            get
+            {
+                var statuses = new[] {"New", "Closed", "In Progress", "Abandoned", "Paused"};
+                return statuses.Select((name, id) => new ProjectStatus() {Id = id, Name = name}).ToList();
+            }
+        }
+
 
         private static List<ProjectType> Types
         {

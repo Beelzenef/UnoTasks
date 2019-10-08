@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\IProjectProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Project.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\ProjectProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\ProjectStatus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\ProjectType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewsModels\ProjectViewModel.cs" />

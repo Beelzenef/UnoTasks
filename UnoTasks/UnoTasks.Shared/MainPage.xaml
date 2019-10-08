@@ -13,8 +13,27 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Command="{Binding LoadProjects}" Content="Load Projects" Margin="10" />
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding LoadProjects}" Content="Load Projects" Margin="10" />
+            <Button Command="{Binding AddNew}" Margin="10">
+                <!--<Button.Flyout>
+                    <Flyout>
+                        <TextBlock Text="Hola" />
+                    </Flyout>
+                </Button.Flyout>-->
+                <Button.Content>
+                    <SymbolIcon Symbol="Add" />
+                </Button.Content>
+            </Button>
+        </StackPanel>
         <ListView Grid.Row="1" ItemsSource="{Binding Projects}">
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel ItemsUpdatingScrollMode="KeepLastItemInView" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <views:ProjectControl />
@@ -26,5 +45,6 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
+
     </Grid>
 </Page>
