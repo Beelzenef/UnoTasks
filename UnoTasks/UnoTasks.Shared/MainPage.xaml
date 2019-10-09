@@ -6,45 +6,37 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewsModels="using:ViewsModels"
     xmlns:views="using:UnoTasks.Shared.Views"
-    mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance viewsModels:MainViewModel}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <Button Command="{Binding LoadProjects}" Content="Load Projects" Margin="10" />
-            <Button Command="{Binding AddNew}" Margin="10">
-                <!--<Button.Flyout>
-                    <Flyout>
-                        <TextBlock Text="Hola" />
-                    </Flyout>
-                </Button.Flyout>-->
-                <Button.Content>
-                    <SymbolIcon Symbol="Add" />
-                </Button.Content>
-            </Button>
-        </StackPanel>
-        <ListView Grid.Row="1" ItemsSource="{Binding Projects}">
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    d:DataContext="{d:DesignInstance viewsModels:MainViewModel}"
+    xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    mc:Ignorable="d">
 
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsStackPanel ItemsUpdatingScrollMode="KeepLastItemInView" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
+    <controls:MasterDetailsView ItemsSource="{Binding Projects}">
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <views:ProjectControl />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+        <controls:MasterDetailsView.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding Name}" />
+            </DataTemplate>
+        </controls:MasterDetailsView.ItemTemplate>
 
-    </Grid>
+        <controls:MasterDetailsView.MasterHeader>
+            <win:StackPanel Orientation="Horizontal">
+                <Button Command="{Binding LoadProjects}" Content="Load Projects" Margin="10" />
+                <Button Command="{Binding AddNew}" Margin="10">
+                    <Button.Content>
+                        <SymbolIcon Symbol="Add" />
+                    </Button.Content>
+                </Button>
+            </win:StackPanel>
+        </controls:MasterDetailsView.MasterHeader>
+
+        <controls:MasterDetailsView.DetailsTemplate>
+            <DataTemplate>
+                <views:ProjectControl />
+            </DataTemplate>
+        </controls:MasterDetailsView.DetailsTemplate>
+
+    </controls:MasterDetailsView>
+
+
 </Page>

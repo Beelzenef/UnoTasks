@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Reactive;
-using System.Reactive.Linq;
 using System.Threading.Tasks;
 using ReactiveUI;
 using Uno.Tasks.Projects;
@@ -30,9 +28,21 @@ namespace ViewsModels
                 Statuses = tuple.statuses;
             });
 
+            var canAddNew = this.WhenAnyValue(x => x.ProjectTypes, x => x.Statuses, (types, statuses) => types != null && statuses != null);
             AddNew = ReactiveCommand.Create(() =>
-                    Projects.Add(new ProjectViewModel(new Project() { Id = Projects.Count + 1 }, ProjectTypes, Statuses)),
-                this.WhenAnyValue(x => x.ProjectTypes, x => x.Statuses, (pt, st) => pt != null && st != null));
+                {
+                    Projects.Add(NewItem());
+                }, canAddNew);
+        }
+
+        private ProjectViewModel NewItem()
+        {
+            var number = Projects.Count + 1;
+            return new ProjectViewModel(new Project
+            {
+                Id = number,
+                Name = $"Project {number}",
+            }, ProjectTypes, Statuses);
         }
 
         public ReactiveCommand<Unit, Unit> AddNew { get; set; }
