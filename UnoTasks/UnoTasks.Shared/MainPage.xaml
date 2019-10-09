@@ -10,32 +10,35 @@
     d:DataContext="{d:DesignInstance viewsModels:MainViewModel}"
     mc:Ignorable="d">
 
-    <controls:MasterDetailsView ItemsSource="{Binding Projects}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding LoadProjects}" Content="Load Projects" Margin="10" />
+            <Button Command="{Binding AddNew}" Margin="10">
+                <Button.Content>
+                    <SymbolIcon Symbol="Add" />
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        <controls:MasterDetailsView Grid.Row="1" ItemsSource="{Binding Projects}">
 
-        <controls:MasterDetailsView.ItemTemplate>
-            <DataTemplate>
-                <TextBlock Text="{Binding Name}" />
-            </DataTemplate>
-        </controls:MasterDetailsView.ItemTemplate>
+            <controls:MasterDetailsView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </controls:MasterDetailsView.ItemTemplate>
 
-        <controls:MasterDetailsView.MasterHeader>
-            <StackPanel Orientation="Horizontal">
-                <Button Command="{Binding LoadProjects}" Content="Load Projects" Margin="10" />
-                <Button Command="{Binding AddNew}" Margin="10">
-                    <Button.Content>
-                        <SymbolIcon Symbol="Add" />
-                    </Button.Content>
-                </Button>
-            </StackPanel>
-        </controls:MasterDetailsView.MasterHeader>
+            <controls:MasterDetailsView.DetailsTemplate>
+                <DataTemplate>
+                    <views:ProjectControl />
+                </DataTemplate>
+            </controls:MasterDetailsView.DetailsTemplate>
 
-        <controls:MasterDetailsView.DetailsTemplate>
-            <DataTemplate>
-                <views:ProjectControl />
-            </DataTemplate>
-        </controls:MasterDetailsView.DetailsTemplate>
-
-    </controls:MasterDetailsView>
+        </controls:MasterDetailsView>
+    </Grid>
 
 
 </Page>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Concurrency;
+using System.Threading;
 using System.Threading.Tasks;
 using ReactiveUI;
 using Uno.Tasks.Projects;
@@ -19,7 +21,7 @@ namespace ViewsModels
 
         public MainViewModel(IProjectProvider projectProvider)
         {
-            LoadProjects = ReactiveCommand.CreateFromTask(() => LoadProjectsAndTypes(projectProvider));
+            LoadProjects = ReactiveCommand.CreateFromTask(() => LoadProjectsAndTypes(projectProvider), outputScheduler: new SynchronizationContextScheduler(SynchronizationContext.Current));
             LoadProjects.Subscribe(tuple =>
             {
                 Projects = new ObservableCollection<ProjectViewModel>(tuple.projs.Select(p =>
