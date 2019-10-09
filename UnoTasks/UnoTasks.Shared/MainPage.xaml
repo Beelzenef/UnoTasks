@@ -8,7 +8,6 @@
     xmlns:views="using:UnoTasks.Shared.Views"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     d:DataContext="{d:DesignInstance viewsModels:MainViewModel}"
-    xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     mc:Ignorable="d">
 
     <controls:MasterDetailsView ItemsSource="{Binding Projects}">
@@ -20,14 +19,14 @@
         </controls:MasterDetailsView.ItemTemplate>
 
         <controls:MasterDetailsView.MasterHeader>
-            <win:StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal">
                 <Button Command="{Binding LoadProjects}" Content="Load Projects" Margin="10" />
                 <Button Command="{Binding AddNew}" Margin="10">
                     <Button.Content>
                         <SymbolIcon Symbol="Add" />
                     </Button.Content>
                 </Button>
-            </win:StackPanel>
+            </StackPanel>
         </controls:MasterDetailsView.MasterHeader>
 
         <controls:MasterDetailsView.DetailsTemplate>
