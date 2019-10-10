@@ -1,5 +1,6 @@
 ﻿using MvvmHelpers;
 using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 namespace UnoTasks.Shared.Models
 {
@@ -37,15 +38,15 @@ namespace UnoTasks.Shared.Models
             set { SetProperty(ref _taskType, value); }
         }
 
-        private Color _statusColor;
-        public Color StatusColor
+        private SolidColorBrush _statusColor;
+        public SolidColorBrush StatusColor
         {
             get => _statusColor;
             set => _statusColor = value;
         }
 
-        private Color _typeColor;
-        public Color TypeColor
+        private SolidColorBrush _typeColor;
+        public SolidColorBrush TypeColor
         {
             get => _typeColor;
             set => _typeColor = value;

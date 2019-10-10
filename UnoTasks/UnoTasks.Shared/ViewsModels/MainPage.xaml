@@ -21,27 +21,32 @@
                       Grid.Row="2">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="Models:Item">
-                        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="LightGray" Padding="5">
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Padding="5">
                             <!--<Canvas Width="10" Background="{x:Bind StatusColor}" />
                             <Canvas Width="10" Background="{x:Bind TypeColor}" />-->
                             <TextBlock Text="{x:Bind Id}" Margin="6,0" VerticalAlignment="Center" />
+                            <TextBlock Text="{x:Bind Id}" 
+                                       Margin="6,0"
+                                       VerticalAlignment="Center" 
+                                       Width="30"
+                                       TextAlignment="Center"/>
                             <StackPanel Orientation="Vertical" Padding="5">
-                                <TextBlock Text="Type" FontWeight="Bold" FontSize="16" Margin="10,0" />
                                 <ComboBox x:Name="ItemTypeBox"
-                                    ItemsSource="{x:Bind TypeList}"
-                                    SelectedItem="{x:Bind TaskType, Mode=TwoWay}"
-                                    SelectionChanged="ItemType_SelectionChanged"
-                                    PlaceholderText="Enter the item Type"
-                                    HorizontalAlignment="Stretch"
-                                    Margin="10,0,0,0"/>
-                                <TextBlock Text="Status" FontWeight="Bold" FontSize="16" Margin="10,0" />
+                                          Header="Type"
+                                          ItemsSource="{x:Bind TypeList}"
+                                          SelectedItem="{x:Bind TaskType, Mode=TwoWay}"
+                                          SelectionChanged="ItemType_SelectionChanged"
+                                          PlaceholderText="Enter the item Type"
+                                          HorizontalAlignment="Stretch"
+                                          Margin="10,0,0,0"/>
                                 <ComboBox x:Name="ItemStatusBox"
-                                    ItemsSource="{x:Bind StatusList}"
-                                    SelectedItem="{x:Bind CurrentStatus, Mode=TwoWay}"
-                                    HorizontalAlignment="Stretch"
-                                    PlaceholderText="Select the item status"
-                                    SelectionChanged="StatusPicker_SelectionChanged"
-                                    Margin="10,0,0,0"/>
+                                          Header="Status"
+                                          ItemsSource="{x:Bind StatusList}"
+                                          SelectedItem="{x:Bind CurrentStatus, Mode=TwoWay}"
+                                          HorizontalAlignment="Stretch"
+                                          PlaceholderText="Select the item status"
+                                          SelectionChanged="StatusPicker_SelectionChanged"
+                                          Margin="10,0,0,0"/>
                             </StackPanel>
                             <TextBox Text="{x:Bind Description, Mode=TwoWay}"
                                  Grid.Row="2"
